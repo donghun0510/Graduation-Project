@@ -9,18 +9,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
 
-        <TextView
-            android:id="@+id/profile"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="profile"
-            android:textSize="50sp"
-            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/accountlayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/accountlayout"
@@ -30,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile">
+            app:layout_constraintTop_toBottomOf="@+id/linear1">
 
             <TextView
                 android:id="@+id/account"
@@ -69,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="로그아웃"
+                android:text="로그인"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

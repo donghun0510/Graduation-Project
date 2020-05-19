@@ -1,7 +1,9 @@
 package com.acaroom.tab;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,8 +18,21 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.HttpResponse;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+
+import static java.lang.System.in;
 
 
 /**
@@ -26,7 +41,6 @@ import com.google.android.material.tabs.TabLayout;
 public class SettingFragment extends Fragment {
 
     private TextView accountset, withdrawal, logout, appAsk, appNotice, appConst, appPersonal, appPermit;
-
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -73,8 +87,11 @@ public class SettingFragment extends Fragment {
         logout.setOnClickListener((v) -> {// 인텐트로 로그인 창으로 이동
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
+            if(logout.toString().equals("로그아웃")) {
+                Toast.makeText(getActivity(), "로그아웃 하셨습니다.", Toast.LENGTH_SHORT).show();
+                logout.setText("로그아웃");
+            }
 
-            Toast.makeText(getActivity(), "로그아웃 하셨습니다.", Toast.LENGTH_SHORT).show();
         });
         appAsk.setOnClickListener((v) -> {  // 문의 창으로 이동
             Intent intent = new Intent(getActivity(), appAskActivity.class);
@@ -110,7 +127,9 @@ public class SettingFragment extends Fragment {
             }
         });
 
+
         // Inflate the layout for this fragment
         return view;
     }
 }
+

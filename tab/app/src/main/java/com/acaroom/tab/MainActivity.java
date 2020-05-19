@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     TabItem Home, Match, MatchCall, Setting;
+    private Fragment f_home, f_match, f_matchcall, f_set;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +22,50 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab);
 
-        replaceFragment(new HomeFragment());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        f_home = new HomeFragment();
+        fragmentManager.beginTransaction().replace(R.id.frLayout, f_home).commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             if (tab.getPosition() == 0) {
-                replaceFragment(new HomeFragment());
+                if(f_home == null) {
+                    f_home = new HomeFragment();
+                    fragmentManager.beginTransaction().add(R.id.frLayout, f_home).commit();
+                }
+                if(f_home != null) fragmentManager.beginTransaction().show(f_home).commit();
+                if(f_match != null) fragmentManager.beginTransaction().hide(f_match).commit();
+                if(f_matchcall != null) fragmentManager.beginTransaction().hide(f_matchcall).commit();
+                if(f_set != null) fragmentManager.beginTransaction().hide(f_set).commit();
             } else if (tab.getPosition() == 1) {
-                replaceFragment(new MatchFragment());
+                if(f_match == null) {
+                    f_match = new MatchFragment();
+                    fragmentManager.beginTransaction().add(R.id.frLayout, f_match).commit();
+                }
+                if(f_home != null) fragmentManager.beginTransaction().hide(f_home).commit();
+                if(f_match != null) fragmentManager.beginTransaction().show(f_match).commit();
+                if(f_matchcall != null) fragmentManager.beginTransaction().hide(f_matchcall).commit();
+                if(f_set != null) fragmentManager.beginTransaction().hide(f_set).commit();
             } else if (tab.getPosition() == 2) {
-                replaceFragment(new MatchCallFragment());
+                if(f_matchcall == null) {
+                    f_matchcall = new MatchCallFragment();
+                    fragmentManager.beginTransaction().add(R.id.frLayout, f_matchcall).commit();
+                }
+                if(f_home != null) fragmentManager.beginTransaction().hide(f_home).commit();
+                if(f_match != null) fragmentManager.beginTransaction().hide(f_match).commit();
+                if(f_matchcall != null) fragmentManager.beginTransaction().show(f_matchcall).commit();
+                if(f_set != null) fragmentManager.beginTransaction().hide(f_set).commit();
             } else {
-                replaceFragment(new SettingFragment());
+                if(f_set == null) {
+                    f_set = new SettingFragment();
+                    fragmentManager.beginTransaction().add(R.id.frLayout, f_set).commit();
+                }
+                if(f_home != null) fragmentManager.beginTransaction().hide(f_home).commit();
+                if(f_match != null) fragmentManager.beginTransaction().hide(f_match).commit();
+                if(f_matchcall != null) fragmentManager.beginTransaction().hide(f_matchcall).commit();
+                if(f_set != null) fragmentManager.beginTransaction().show(f_set).commit();
             }
         }
 
@@ -44,12 +77,7 @@ public class MainActivity extends AppCompatActivity {
         public void onTabReselected(TabLayout.Tab tab){
 
             }
-    });
-    }
+        });
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frLayout, fragment).commit();
     }
 }
