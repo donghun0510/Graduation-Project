@@ -37,9 +37,9 @@ public class recommandFragment extends Fragment {
         mListView= (ListView) view.findViewById(R.id.list_item);
         mAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_single_choice, mList);
         mListView.setAdapter(mAdapter);
-        mList.add("고려대FC");
-        mList.add("연세대FC");
-        mList.add("서울대FC");
+        mList.add("고려대FC - 4km/9%/24세");
+        mList.add("연세대FC - 13km/7%/25세");
+        mList.add("서울대FC - 20km/4%/26세");
 
         btn_ok= (Button) view.findViewById(R.id.btn_ok);
 
@@ -54,7 +54,7 @@ public class recommandFragment extends Fragment {
                     if (checked > -1 && checked < count) {
                         // 아이템 수정
                         String str = mList.get(checked);
-                        mList.set(checked, str + "     - 수락된 메시지") ;
+                        mList.set(checked, str + "     \r\n- 수락된 메시지") ;
 
                         // listview 갱신
                         mAdapter.notifyDataSetChanged();

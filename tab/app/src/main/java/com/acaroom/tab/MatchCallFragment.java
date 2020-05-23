@@ -1,8 +1,11 @@
 package com.acaroom.tab;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -39,12 +42,12 @@ public class MatchCallFragment extends Fragment {
         mListView= (ListView) view.findViewById(R.id.list_item);
         mAdapter =  new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_single_choice, mList);
         mListView.setAdapter(mAdapter);
-        mList.add("서울대FC");
-        mList.add("연세대FC");
-        mList.add("고려대FC");
-        mList.add("서강대FC");
-        mList.add("성균관대FC");
-        mList.add("한양대FC");
+        mList.add("서울대FC - 20km/4%/26세");
+        mList.add("연세대FC - 13km/7%/25세");
+        mList.add("고려대FC - 4km/9%/24세");
+        mList.add("서강대FC - 13km/12%/23세");
+        mList.add("성균관대FC - 7km/10%/22세");
+        mList.add("한양대FC - 7km/14%/20세");
 
         btn_ok = (Button) view.findViewById(R.id.btn_ok);
         btn_del = (Button) view.findViewById(R.id.btn_del);
